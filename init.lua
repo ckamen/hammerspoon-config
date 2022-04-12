@@ -1,6 +1,7 @@
 print('============================')
-require("hs.ipc")
-hs.ipc.cliInstall()
+
+-- require("hs.ipc")
+-- hs.ipc.cliInstall()
 
 -- Reload Configuration after init.lua changed
 -- myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()
@@ -49,6 +50,9 @@ hs.hotkey.bind({"ctrl"}, "3", function()
 end)
 
 hs.hotkey.bind({"ctrl"}, "5", function()
+  -- copy
+  hs.eventtap.keyStroke({"cmd"}, "c")  
+
   hs.application.launchOrFocus('/Applications/网易有道词典.app')
   -- 清除输入框
   hs.eventtap.keyStroke({"cmd"}, hs.keycodes.map["delete"])  
@@ -78,8 +82,10 @@ hs.hotkey.bind(hyper, "n", function()
   hs.application.open('Activity Monitor')
 end)
 
+
 hs.hotkey.bindSpec({ hyper, "y" }, hs.toggleConsole)
 hs.hotkey.bindSpec({ hyper, "r" }, hs.reload)
+
 
 
 
@@ -93,7 +99,6 @@ function applicationWatcher(appName, eventType, appObject)
 end
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
-
 
 
 
